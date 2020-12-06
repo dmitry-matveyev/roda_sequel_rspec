@@ -11,16 +11,13 @@ require_relative 'models'
 Unreloader.require('app.rb'){'App'}
 run(dev ? Unreloader : App.freeze.app)
 
-freeze_core = false
-#freeze_core = !dev # Uncomment to enable refrigerator
+freeze_core = !dev # Uncomment to enable refrigerator
 if freeze_core
   begin
     require 'refrigerator'
   rescue LoadError
   else
-    require 'tilt/sass' unless File.exist?(File.expand_path('../compiled_assets.json', __FILE__))
-
-    # When enabling refrigerator, you may need to load additional
+     # When enabling refrigerator, you may need to load additional
     # libraries before freezing the core to work correctly.  You'll
     # want to uncomment the appropriate lines below if you run into
     # problems after enabling refrigerator.
