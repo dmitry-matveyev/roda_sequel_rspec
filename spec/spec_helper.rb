@@ -1,10 +1,10 @@
-ENV["RACK_ENV"] = "test"
-require_relative "../app"
+ENV['RACK_ENV'] = 'test'
+require_relative '../app'
 require 'rack/test'
 require 'pry'
 
 App.plugin :not_found do
-  raise "404 - File Not Found"
+  raise '404 - File Not Found'
 end
 
 App.plugin :error_handler do |e|

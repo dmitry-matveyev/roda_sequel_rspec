@@ -1,9 +1,7 @@
 require_relative 'db'
 require 'sequel/model'
 
-if ENV['RACK_ENV'] == 'development'
-  Sequel::Model.cache_associations = false
-end
+Sequel::Model.cache_associations = false if ENV['RACK_ENV'] == 'development'
 
 Sequel::Model.plugin :auto_validations
 Sequel::Model.plugin :prepared_statements
@@ -14,7 +12,7 @@ unless defined?(Unreloader)
   Unreloader = Rack::Unreloader.new(reload: false)
 end
 
-Unreloader.require('models'){|f| Sequel::Model.send(:camelize, File.basename(f).sub(/\.rb\z/, ''))}
+Unreloader.require('models') { |f| Sequel::Model.send(:camelize, File.basename(f).sub(/\.rb\z/, ''))}
 
 if ENV['RACK_ENV'] == 'development' || ENV['RACK_ENV'] == 'test'
   require 'logger'
