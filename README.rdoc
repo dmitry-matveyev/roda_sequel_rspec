@@ -16,7 +16,7 @@ or similar program.
 * rake test_up # Migrate the test database up
 * rake prod_up # Migrate the production database up
 
-*Irb Console*
+*Console*
 * rake dev_irb  # IRB shell with models connected to the development database
 * rake test_irb # IRB shell with models connected to the test database
 * rake prod_irb # IRB shell with models connected to the production database
